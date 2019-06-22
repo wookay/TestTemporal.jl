@@ -1,0 +1,15 @@
+# Documentation: http://docs.travis-ci.com/user/languages/julia/
+notifications:
+  email: false
+
+language: julia
+
+julia:
+  - 1.1
+  - nightly
+
+script:
+  - julia --color=yes -e 'using Pkg; pkg"add Temporal"; pkg"precompile"'
+  - time julia -e '@info VERSION; using Temporal'
+  - time julia -e '@info VERSION; using Temporal; using Temporal'
+  - time julia -e '@info VERSION; using Temporal; using Temporal; using Temporal'
